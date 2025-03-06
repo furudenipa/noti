@@ -58,8 +58,6 @@ If you want to build from the source, then build like this.
 ```shell
 # build binary
 make build
-# build binary and move to Go bin dir
-make install
 ```
 
 ## Examples
