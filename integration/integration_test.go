@@ -11,9 +11,7 @@ import (
 )
 
 func TestNoti(t *testing.T) {
-	if _, err := exec.LookPath("noti"); err != nil {
-		t.Skip("noti binary missing from PATH")
-	}
+	const notiPath = "../out/noti"
 
 	t.Run("show version", func(t *testing.T) {
 		if runtime.GOOS == "darwin" {
@@ -21,7 +19,7 @@ func TestNoti(t *testing.T) {
 			t.SkipNow()
 		}
 
-		data, err := exec.Command("noti", "--version").Output()
+		data, err := exec.Command(notiPath, "--version").Output()
 		if err != nil {
 			t.Error(err)
 		}
@@ -42,7 +40,7 @@ func TestNoti(t *testing.T) {
 	})
 
 	t.Run("dry run", func(t *testing.T) {
-		cmd := exec.Command("noti", "--verbose", "-b=0")
+		cmd := exec.Command(notiPath, "--verbose", "-b=0")
 		cmd.Env = []string{}
 
 		data, err := cmd.Output()
@@ -79,7 +77,7 @@ func TestNoti(t *testing.T) {
 			t.Fatal("couldn't get sleep pid")
 		}
 
-		cmd := exec.CommandContext(ctx, "noti", "--verbose", "-b=0", "--pwatch", sleepPID)
+		cmd := exec.CommandContext(ctx, notiPath, "--verbose", "-b=0", "--pwatch", sleepPID)
 		cmd.Env = []string{}
 
 		if out, err := cmd.Output(); err != nil {
