@@ -53,7 +53,7 @@ lint:
 	go vet ./...
 	$(golangci_lint) run --no-config --exclude-use-default=false \
 		--max-same-issues=0 \
-		--timeout 30s \
+		--timeout 60s \
 		--disable errcheck \
 		--disable stylecheck \
 		--disable bodyclose \
