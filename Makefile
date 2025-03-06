@@ -1,52 +1,39 @@
+MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-builtin-variables
+
 export GOFLAGS := -mod=vendor
-export GO111MODULE := on
-export GOPROXY := direct
-export GOSUMDB := off
+export GOPROXY := off
 
 branch := $(shell git rev-parse --abbrev-ref HEAD)
 tag := $(shell git describe --abbrev=0 --tags)
 rev := $(shell git rev-parse --short HEAD)
 
-golangci-lint := ./tools/golangci-lint-1.52.2-$(shell go env GOOS)-amd64
+ld_flags_dev := -race -ldflags "-X github.com/variadico/noti/internal/command.Version=$(branch)-$(rev)"
+ld_flags_rel := -ldflags "-s -w -X github.com/variadico/noti/internal/command.Version=$(tag)"
 
-gosrc := $(shell find cmd internal service -name "*.go")
+go_src := $(shell find ./service ./internal ./cmd -name "*.go")
 
-gobin := $(strip $(shell go env GOBIN))
-ifeq ($(gobin),)
-gobin := $(shell go env GOPATH)/bin
-endif
-
-ldflags := -ldflags "-X github.com/variadico/noti/internal/command.Version=$(branch)-$(rev)"
-ldflags_rel := -ldflags "-s -w -X github.com/variadico/noti/internal/command.Version=$(tag)"
-
-cmd/noti/noti: $(gosrc) vendor
-	go build -race -o $@ $(ldflags) github.com/variadico/noti/cmd/noti
+go.sum: go.mod
+	GOPROXY= go mod tidy
 
 vendor: go.mod go.sum
-	go mod tidy
-	go mod vendor
+	GOPROXY= go mod vendor
 	touch $@
 
-release/noti.linuxrelease: $(gosrc) vendor
-	mkdir --parents release
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
-		go build -o $@ $(ldflags_rel) github.com/variadico/noti/cmd/noti
-release/noti$(tag).linux-amd64.tar.gz: release/noti.linuxrelease
-	tar czvf $@ --transform 's#$<#noti#g' $<
+out/noti: go.mod go.sum vendor $(go_src)
+	cd cmd/noti && go build -o ../../$@ $(ld_flags_dev)
 
-release/noti.darwinrelease: $(gosrc) vendor
-	mkdir -p release
-	GOOS=darwin GOARCH=amd64 \
-		go build -o $@ $(ldflags_rel) github.com/variadico/noti/cmd/noti
-release/noti$(tag).darwin-amd64.tar.gz: release/noti.darwinrelease
-	tar czvf $@ --transform 's#$<#noti#g' $<
+out/noti.darwin.rel: go.mod go.sum vendor $(go_src)
+	cd cmd/noti && GOOS=darwin GOARCH=amd64 \
+		go build -o ../../$@ $(ld_flags_rel)
+out/noti.%.rel: go.mod go.sum vendor $(go_src)
+	cd cmd/noti && CGO_ENABLED=0 GOOS=$* GOARCH=amd64 \
+		go build -o ../../$@ $(ld_flags_rel)
 
-release/noti.windowsrelease: $(gosrc) vendor
-	mkdir --parents release
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 \
-		go build -o $@ $(ldflags_rel) github.com/variadico/noti/cmd/noti
-release/noti$(tag).windows-amd64.tar.gz: release/noti.windowsrelease
+out/noti$(tag).windows-amd64.tar.gz: out/noti.windows.rel
 	tar czvf $@ --transform 's#$<#noti.exe#g' $<
+out/noti$(tag).%-amd64.tar.gz: out/noti.%.rel
+	tar czvf $@ --transform 's#$<#noti#g' $<
 
 docs/man/dist/noti.1: docs/man/noti.1.md
 	mkdir --parents $(dir $@)
@@ -56,65 +43,49 @@ docs/man/dist/noti.yaml.5: docs/man/noti.yaml.5.md
 	pandoc -s -t man $< -o $@
 
 .PHONY: build
-build: cmd/noti/noti
-
-.PHONY: install
-install: cmd/noti/noti
-	mv $< $(gobin)
+build: out/noti
 
 .PHONY: lint
+lint: golangci_lint := ./tools/golangci-lint-1.64.6-$(shell go env GOOS)-amd64
 lint:
 	go vet ./...
-	$(golangci-lint) run --no-config --exclude-use-default=false --max-same-issues=0 \
-	--timeout 30s \
-	--disable errcheck \
-	--disable stylecheck \
-	--disable structcheck \
-	--disable bodyclose \
-	--enable unconvert \
-	--enable dupl \
-	--enable gocyclo \
-	--enable gofmt \
-	--enable goimports \
-	--enable misspell \
-	--enable lll \
-	--enable unparam \
-	--enable nakedret \
-	--enable prealloc \
-	--enable gocritic \
-	--enable gochecknoinits \
-	./...
+	$(golangci_lint) run --no-config --exclude-use-default=false \
+		--max-same-issues=0 \
+		--timeout 30s \
+		--disable errcheck \
+		--disable stylecheck \
+		--disable bodyclose \
+		--enable unconvert \
+		--enable dupl \
+		--enable gocyclo \
+		--enable gofmt \
+		--enable goimports \
+		--enable misspell \
+		--enable lll \
+		--enable unparam \
+		--enable nakedret \
+		--enable prealloc \
+		--enable gocritic \
+		--enable gochecknoinits \
+		./...
 
 .PHONY: test
 test:
-	go test -v -cover -race $$(go list ./... | grep -v "noti/tests")
+	go test -v -cover -race $(shell go list ./... | grep -v "noti/integration")
 
 .PHONY: test-integration
-test-integration:
-	go install \
-		-ldflags "-X github.com/variadico/noti/internal/command.Version=$(branch)-$(rev)" \
-		github.com/variadico/noti/cmd/noti
-	go test -v -cover ./tests/...
+test-integration: out/noti
+	go test -v -cover ./integration/...
 
-.PHONY: clean
-clean:
-	go clean
-	rm -f cmd/noti/noti
-	rm -rf release/
-	git clean -x -f -d
-
-.PHONY: man
-man: docs/man/dist/noti.1 docs/man/dist/noti.yaml.5
-
-.PHONY: release
-release: release/noti$(tag).linux-amd64.tar.gz release/noti$(tag).windows-amd64.tar.gz
+.PHONY: release-no-cgo
+release-no-cgo: out/noti$(tag).linux-amd64.tar.gz out/noti$(tag).windows-amd64.tar.gz
 
 .PHONY: release-darwin
 release-darwin: release/noti$(tag).darwin-amd64.tar.gz
 
-.PHONY: update-mod
-update-mod:
-	go get -u ./cmd/...
-	go get -u ./internal/...
-	go get -u ./service/...
-	go mod tidy
+.PHONY: man
+man: docs/man/dist/noti.1 docs/man/dist/noti.yaml.5
+
+.PHONY: update-go-mod
+update-go-mod:
+	GOPROXY= go get -u ./service/... ./internal/... ./cmd/...
