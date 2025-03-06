@@ -58,10 +58,10 @@ lint:
 		--disable stylecheck \
 		--disable bodyclose \
 		--$(if $(filter windows,$(goos)),disable,enable) gofmt \
+		--$(if $(filter windows,$(goos)),disable,enable) goimports \
 		--enable unconvert \
 		--enable dupl \
 		--enable gocyclo \
-		--enable goimports \
 		--enable misspell \
 		--enable lll \
 		--enable unparam \
