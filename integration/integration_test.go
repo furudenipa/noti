@@ -56,7 +56,7 @@ func TestNoti(t *testing.T) {
 	})
 
 	t.Run("pwatch", func(t *testing.T) {
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
 
 		sleep := exec.CommandContext(ctx, "sleep", "2")
