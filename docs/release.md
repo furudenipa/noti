@@ -1,6 +1,7 @@
 # Noti release
 
-This is the internal process I go through to release a version of Noti. I'm just writing this down for myself.
+This is the internal process I go through to release a version of Noti. I'm
+just writing this down for myself.
 
 ## Tests
 
@@ -16,23 +17,24 @@ https://github.com/variadico/noti/actions?query=workflow%3ATesting
 
 Don't forget to `make man` to generate the updated man pages.
 
-## Merge to master
+## Merge to main
 
 ```sh
-git checkout master
+git checkout main
 git merge dev --ff-only
-git push origin master
+git push origin main
 ```
 
 ## Tests
 
-Make sure latest master is green on CI.
+Make sure latest main is green on CI.
 
 https://github.com/variadico/noti/actions?query=workflow%3ATesting
 
 ## Double check
 
-Fix anything that might have broken like CI or URLs in docs. Last chance to change anything.
+Fix anything that might have broken like CI or URLs in docs. Last chance to
+change anything.
 
 ## Tag release
 
@@ -51,11 +53,3 @@ git push origin 1.2.3
   delete `noti.darwinrelease`, it's temporary junk. It's fine.
 * Add CHANGELOG notes to release body
 * Publish release
-
-## Eventually update Homebrew
-
-IDK how this works.
-
-Read this: https://github.com/Homebrew/homebrew-core/blob/master/.github/CONTRIBUTING.md#submit-a-123-version-upgrade-for-the-foo-formula
-
-And this: https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/How-To-Open-a-Homebrew-Pull-Request-(and-get-it-merged).md#create-your-pull-request-from-a-new-branch
