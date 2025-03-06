@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased] - YYYY-MM-DD
 
+## [3.8.0] - 2025-03-06
+
+### Added
+
+* Chanify support
+* ntfy support
+* Bark support
+
+### Removed
+
+* Deprecated 'as_user' parameter from Slack service
+
 ## [3.7.0] - 2023-02-12
 
 ### Added
@@ -258,7 +270,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * OS X-specific flags and usage text from Linux and FreeBSD help.
 
 
-[Unreleased]: https://github.com/variadico/noti/compare/3.7.0...main
+[Unreleased]: https://github.com/variadico/noti/compare/3.8.0...main
+[3.8.0]: https://github.com/variadico/noti/compare/3.7.0...3.8.0
 [3.7.0]: https://github.com/variadico/noti/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/variadico/noti/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/variadico/noti/compare/3.4.0...3.5.0

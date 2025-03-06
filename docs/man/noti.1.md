@@ -1,4 +1,4 @@
-% NOTI(1) noti 3.7.0 | Noti Manual
+% NOTI(1) noti 3.8.0 | Noti Manual
 % variadico
 % 2018/03/25
 
