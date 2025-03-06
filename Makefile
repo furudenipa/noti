@@ -46,8 +46,10 @@ docs/man/dist/noti.yaml.5: docs/man/noti.yaml.5.md
 build: out/noti
 
 .PHONY: lint
-lint: golangci_lint := ./tools/golangci-lint-1.64.6-$(shell go env GOOS)-amd64
+lint: goos := $(strip $(shell go env GOOS))
+lint: golangci_lint := ./tools/golangci-lint-1.64.6-$(goos)-amd64
 lint:
+	# Seems like there's some Windows bug with gofmt
 	go vet ./...
 	$(golangci_lint) run --no-config --exclude-use-default=false \
 		--max-same-issues=0 \
@@ -55,10 +57,10 @@ lint:
 		--disable errcheck \
 		--disable stylecheck \
 		--disable bodyclose \
+		--$(if $(filter windows,$(goos)),disable,enable) gofmt \
 		--enable unconvert \
 		--enable dupl \
 		--enable gocyclo \
-		--enable gofmt \
 		--enable goimports \
 		--enable misspell \
 		--enable lll \
