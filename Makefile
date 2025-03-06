@@ -81,7 +81,7 @@ test-integration: out/noti
 release-no-cgo: out/noti$(tag).linux-amd64.tar.gz out/noti$(tag).windows-amd64.tar.gz
 
 .PHONY: release-darwin
-release-darwin: release/noti$(tag).darwin-amd64.tar.gz
+release-darwin: out/noti$(tag).darwin-amd64.tar.gz
 
 .PHONY: man
 man: docs/man/dist/noti.1 docs/man/dist/noti.yaml.5
