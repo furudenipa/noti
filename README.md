@@ -1,3 +1,47 @@
+# NOTICE: noti is moving to codeberg.org/roble/noti 🚚
+
+---
+
+github.com/variadico/noti is moving to [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+
+Effective immediately, the latest development source code will be hosted at
+https://codeberg.org/roble/noti/
+
+Over the past few years, I've been trying out different code forges. This last
+year, I found that I've been using my Codeberg account the most. The thing I
+value the most about Codeberg is that it's an Open Source platform (based on
+Forgejo). I also like the UI/UX Codeberg has to offer.
+
+**Migration plan**
+
+- [x] Create repo at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+- [ ] Setup CI at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+- [x] Copy issues to [codeberg.org/roble/noti/issues](https://codeberg.org/roble/noti/issues)
+- [x] Copy releases to [codeberg.org/roble/noti/releases](https://codeberg.org/roble/noti/releases)
+- [x] Resolve open pull requests on github.com/variadico/noti
+- [x] Disable pull requests at github.com/variadico/noti
+- [ ] Disable issues at github.com/variadico/noti
+- [x] Post notice on github.com/variadico/noti
+- [ ] Update consumer URLs to point to [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+- [ ] Archive github.com/variadico/noti
+
+**Timeline**
+
+I expect the entire process to take months, both because of life and also to
+give people time to learn about this change.
+
+
+**Other notes**
+
+The maintainer is not changing. I'm [variadico on
+GitHub](https://github.com/variadico/noti), but [roble on
+Codeberg](https://codeberg.org/roble). I'm the same person. This isn't a supply
+chain hack.
+
+I'll update the readme as necessary with any updates.
+
+---
+
 # noti
 
 ![Testing](https://github.com/variadico/noti/actions/workflows/testing.yaml/badge.svg)
@@ -14,24 +58,24 @@ when it's done. You can receive messages on your computer or phone.
 Noti can send notifications on a number of services.
 
 | Service    | macOS | Linux | Windows |
-| ---------- | :---: | :---: | :-----: |
-| Banner     |   ✔   |   ✔   |    ✔    |
-| Speech     |   ✔   |   ✔   |    ✔    |
-| BearyChat  |   ✔   |   ✔   |    ✔    |
-| Keybase    |   ✔   |   ✔   |    ✔    |
-| Mattermost |   ✔   |   ✔   |    ✔    |
-| Pushbullet |   ✔   |   ✔   |    ✔    |
-| Pushover   |   ✔   |   ✔   |    ✔    |
-| Pushsafer  |   ✔   |   ✔   |    ✔    |
-| Simplepush |   ✔   |   ✔   |    ✔    |
-| Slack      |   ✔   |   ✔   |    ✔    |
-| Telegram   |   ✔   |   ✔   |    ✔    |
-| Zulip      |   ✔   |   ✔   |    ✔    |
-| Twilio     |   ✔   |   ✔   |    ✔    |
-| GChat      |   ✔   |   ✔   |    ✔    |
-| Chanify    |   ✔   |   ✔   |    ✔    |
-| Bark       |   ✔   |   ✔   |    ✔    |
-| ntfy       |   ✔   |   ✔   |    ✔    |
+| ---------- |:-----:|:-----:|:-------:|
+| Banner     | ✔     | ✔     | ✔       |
+| Speech     | ✔     | ✔     | ✔       |
+| BearyChat  | ✔     | ✔     | ✔       |
+| Keybase    | ✔     | ✔     | ✔       |
+| Mattermost | ✔     | ✔     | ✔       |
+| Pushbullet | ✔     | ✔     | ✔       |
+| Pushover   | ✔     | ✔     | ✔       |
+| Pushsafer  | ✔     | ✔     | ✔       |
+| Simplepush | ✔     | ✔     | ✔       |
+| Slack      | ✔     | ✔     | ✔       |
+| Telegram   | ✔     | ✔     | ✔       |
+| Zulip      | ✔     | ✔     | ✔       |
+| Twilio     | ✔     | ✔     | ✔       |
+| GChat      | ✔     | ✔     | ✔       |
+| Chanify    | ✔     | ✔     | ✔       |
+| Bark       | ✔     | ✔     | ✔       |
+| ntfy       | ✔     | ✔     | ✔       |
 
 Check the [screenshots] directory to see what the notifications look like on different platforms.
 
