@@ -44,7 +44,7 @@ I'll update the readme as necessary with any updates.
 
 # noti
 
-![Testing](https://github.com/variadico/noti/actions/workflows/testing.yaml/badge.svg)
+[![status-badge](https://ci.codeberg.org/api/badges/16710/status.svg)](https://ci.codeberg.org/repos/16710)
 
 Monitor a process and trigger a notification.
 
@@ -81,17 +81,41 @@ Check the [screenshots] directory to see what the notifications look like on dif
 
 ## Installation
 
-Install the Go binary with these commands.
+Install noti with these commands.
+
+**AUR**
 
 ```shell
-# macOS install with Brew
+# Directly
+git clone https://aur.archlinux.org/noti.git
+cd noti
+makepkg -sirc
+
+# Or with a helper such as yay, paru...
+```
+
+**Nix**
+
+```shell
+nix-shell -p noti
+```
+
+**Homebrew**
+
+```shell
 brew install noti
+```
 
-# macOS install with curl
-curl -L $(curl -s https://api.github.com/repos/variadico/noti/releases/latest | awk '/browser_download_url/ { print $2 }' | grep 'darwin-amd64' | sed 's/"//g') | tar -xz
+**Download pre-built binary**
 
-# Linux install with curl
-curl -L $(curl -s https://api.github.com/repos/variadico/noti/releases/latest | awk '/browser_download_url/ { print $2 }' | grep 'linux-amd64' | sed 's/"//g') | tar -xz
+```shell
+(
+    VER=3.8.0
+    OS=linux
+    ARCH=amd64
+    curl -OL https://codeberg.org/roble/noti/releases/download/$VER/noti$VER.$OS-$ARCH.tar.gz
+    tar xf noti$VER.$OS-$ARCH.tar.gz
+)
 ```
 
 Or download it with your browser from the [latest release] page.
@@ -164,7 +188,7 @@ Additionally, `noti` can send a message piped from stdin with `-`.
 $ make test 2>&1 | tail --lines 5 | noti -t "Test Results" -m -
 ```
 
-[macos banner notification]: https://raw.githubusercontent.com/variadico/noti/main/docs/screenshots/macos_banner.png
-[screenshots]: https://github.com/variadico/noti/tree/main/docs/screenshots
-[latest release]: https://github.com/variadico/noti/releases/latest
-[docs]: https://github.com/variadico/noti/blob/main/docs/noti.md
+[macos banner notification]: https://codeberg.org/roble/noti/raw/branch/main/docs/screenshots/macos_banner.png
+[screenshots]: https://codeberg.org/roble/noti/src/branch/main/docs/screenshots
+[latest release]: https://codeberg.org/roble/noti/releases/latest
+[docs]: https://codeberg.org/roble/noti/src/branch/main/docs/noti.md
