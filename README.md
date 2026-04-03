@@ -106,6 +106,13 @@ nix-shell -p noti
 brew install noti
 ```
 
+**Scoop**
+
+```shell
+scoop bucket add main
+scoop install main/noti
+```
+
 **Download pre-built binary**
 
 ```shell
