@@ -142,10 +142,11 @@ It uses the following search order (unless overridden by the --file flag):
   - Otherwise:
     - `$HOME/.config/noti/noti.yaml`
 
-There is an example configuration file, and a JSON schema for it, in the [docs](docs) directory.
+There is an example configuration file, and a JSON schema for it, in the
+[docs](https://codeberg.org/roble/noti/src/branch/main/docs/) directory.
 
-- [docs/noti.example.yaml](docs/noti.example.yaml)
-- [docs/noti.schema.json](docs/noti.schema.json)
+- [docs/noti.example.yaml](https://codeberg.org/roble/noti/src/branch/main/docs/noti.example.yaml)
+- [docs/noti.schema.json](https://codeberg.org/roble/noti/src/branch/main/docs/noti.schema.json)
 
 ## Examples
 
