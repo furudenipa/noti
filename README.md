@@ -15,15 +15,16 @@ Forgejo). I also like the UI/UX Codeberg has to offer.
 **Migration plan**
 
 - [x] Create repo at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
-- [ ] Setup CI at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+- [x] Setup CI at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
 - [x] Copy issues to [codeberg.org/roble/noti/issues](https://codeberg.org/roble/noti/issues)
 - [x] Copy releases to [codeberg.org/roble/noti/releases](https://codeberg.org/roble/noti/releases)
 - [x] Resolve open pull requests on github.com/variadico/noti
-- [x] Disable pull requests at github.com/variadico/noti
-- [ ] Disable issues at github.com/variadico/noti
 - [x] Post notice on github.com/variadico/noti
+- [x] Disable pull requests at github.com/variadico/noti
 - [ ] Update consumer URLs to point to [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
-- [ ] Archive github.com/variadico/noti
+- [ ] Disable issues at github.com/variadico/noti
+- [ ] Archive/stop updating github.com/variadico/noti
+- [ ] Release noti 3.9.0 at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
 
 **Timeline**
 
