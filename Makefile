@@ -32,6 +32,17 @@ out/noti$(tag).windows-amd64.tar.gz: out/noti.windows.rel
 out/noti$(tag).%-amd64.tar.gz: out/noti.%.rel
 	tar czvf $@ --transform 's#$<#noti#g' $<
 
+/tmp/noti$(tag).tar.gz:
+	tar --sort=name \
+		--mtime="2000-01-01 00:00Z" \
+		--owner=0 --group=0 --numeric-owner \
+		--format=ustar \
+		--exclude-vcs \
+		--exclude-vcs-ignores \
+		-cf $@ .
+/tmp/noti$(tag).zip:
+	zip --recurse-paths --symlinks -X $@ . --exclude ".git/*"
+
 docs/man/dist/noti.1: docs/man/noti.1.md
 	mkdir --parents $(dir $@)
 	pandoc -s -t man $< -o $@
@@ -55,6 +66,9 @@ test:
 .PHONY: test-integration
 test-integration: out/noti
 	go test -v -cover ./integration/...
+
+.PHONY: release-source
+release-source: /tmp/noti$(tag).tar.gz /tmp/noti$(tag).zip
 
 .PHONY: release-no-cgo
 release-no-cgo: out/noti$(tag).linux-amd64.tar.gz out/noti$(tag).windows-amd64.tar.gz
