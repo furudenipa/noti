@@ -21,9 +21,9 @@ Forgejo). I also like the UI/UX Codeberg has to offer.
 - [x] Resolve open pull requests on github.com/variadico/noti
 - [x] Post notice on github.com/variadico/noti
 - [x] Disable pull requests at github.com/variadico/noti
-- [ ] Update consumer URLs to point to [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
-- [ ] Disable issues at github.com/variadico/noti
-- [ ] Archive/stop updating github.com/variadico/noti
+- [x] Update consumer URLs to point to [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
+- [x] Disable issues at github.com/variadico/noti
+- [x] Archive/stop updating github.com/variadico/noti
 - [ ] Release noti 3.9.0 at [codeberg.org/roble/noti](https://codeberg.org/roble/noti)
 
 **Timeline**
