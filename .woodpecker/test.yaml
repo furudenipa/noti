@@ -2,6 +2,6 @@ steps:
   build:
     when:
       event: [push, pull_request]
-    image: golang:1.26
+    image: codeberg.org/roble/go-ci:2
     commands:
       - make lint test test-integration

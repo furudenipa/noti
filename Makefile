@@ -44,10 +44,9 @@ build: out/noti
 
 .PHONY: lint
 lint: goos := $(strip $(shell go env GOOS))
-lint: golangci_lint := ./tools/golangci-lint-2.10.1-$(goos)-amd64
 lint:
 	go vet ./...
-	$(golangci_lint) run --config=./golangci.toml --color=never ./...
+	golangci-lint run --config=./golangci.toml --color=never ./...
 
 .PHONY: test
 test:
