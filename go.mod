@@ -1,4 +1,4 @@
-module github.com/variadico/noti
+module codeberg.org/roble/noti
 
 go 1.25.0
 
@@ -21,5 +21,4 @@ require (
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.40.0 // indirect
-	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 )

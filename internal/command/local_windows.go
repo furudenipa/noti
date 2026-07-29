@@ -8,8 +8,8 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"github.com/variadico/noti/service/notifyicon"
-	"github.com/variadico/noti/service/speechsynthesizer"
+	"codeberg.org/roble/noti/service/notifyicon"
+	"codeberg.org/roble/noti/service/speechsynthesizer"
 )
 
 func getBanner(title, message string, v *viper.Viper) notification {

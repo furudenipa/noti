@@ -10,7 +10,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/variadico/noti/internal/command"
+	"codeberg.org/roble/noti/internal/command"
 )
 
 func main() {

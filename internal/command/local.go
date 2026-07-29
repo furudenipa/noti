@@ -11,8 +11,8 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"github.com/variadico/noti/service/espeak"
-	"github.com/variadico/noti/service/freedesktop"
+	"codeberg.org/roble/noti/service/espeak"
+	"codeberg.org/roble/noti/service/freedesktop"
 )
 
 func getBanner(title, message string, v *viper.Viper) notification {

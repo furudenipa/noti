@@ -8,8 +8,8 @@ import (
 	"fmt"
 
 	"github.com/spf13/viper"
-	"github.com/variadico/noti/service/nsuser"
-	"github.com/variadico/noti/service/say"
+	"codeberg.org/roble/noti/service/nsuser"
+	"codeberg.org/roble/noti/service/say"
 )
 
 func getBanner(title, message string, v *viper.Viper) notification {

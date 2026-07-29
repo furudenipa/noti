@@ -8,8 +8,8 @@ branch := $(shell git rev-parse --abbrev-ref HEAD)
 tag := $(shell git describe --abbrev=0 --tags)
 rev := $(shell git rev-parse --short HEAD)
 
-ld_flags_dev := -race -ldflags "-X github.com/variadico/noti/internal/command.Version=$(branch)-$(rev)"
-ld_flags_rel := -ldflags "-s -w -X github.com/variadico/noti/internal/command.Version=$(tag)"
+ld_flags_dev := -race -ldflags "-X codeberg.org/roble/noti/internal/command.Version=$(branch)-$(rev)"
+ld_flags_rel := -ldflags "-s -w -X codeberg.org/roble/noti/internal/command.Version=$(tag)"
 
 go_src := $(shell find ./service ./internal ./cmd -name "*.go")
 
