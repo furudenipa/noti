@@ -44,7 +44,7 @@ The `master` branch always contains the latest tagged release.
 
 ```shell
 # Install the latest version on any platform.
-go get -u codeberg.org/roble/noti/cmd/noti
+go install codeberg.org/roble/noti/cmd/noti@latest
 
 # Install the latest version on macOS.
 brew install noti
