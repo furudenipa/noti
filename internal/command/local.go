@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2015-2026 Noti Contributors
+//
+// SPDX-License-Identifier: MIT
+
 //go:build !darwin && !windows
 // +build !darwin,!windows
 

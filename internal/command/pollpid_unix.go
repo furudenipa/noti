@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2015-2026 Noti Contributors
+//
+// SPDX-License-Identifier: MIT
+
 //go:build linux || freebsd || netbsd || openbsd || dragonfly || darwin
 // +build linux freebsd netbsd openbsd dragonfly darwin
 
