@@ -273,24 +273,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * OS X-specific flags and usage text from Linux and FreeBSD help.
 
 
-[Unreleased]: https://github.com/variadico/noti/compare/3.8.0...main
-[3.8.0]: https://github.com/variadico/noti/compare/3.7.0...3.8.0
-[3.7.0]: https://github.com/variadico/noti/compare/3.6.0...3.7.0
-[3.6.0]: https://github.com/variadico/noti/compare/3.5.0...3.6.0
-[3.5.0]: https://github.com/variadico/noti/compare/3.4.0...3.5.0
-[3.4.0]: https://github.com/variadico/noti/compare/3.3.0...3.4.0
-[3.3.0]: https://github.com/variadico/noti/compare/3.2.0...3.3.0
-[3.2.0]: https://github.com/variadico/noti/compare/3.1.0...3.2.0
-[3.1.0]: https://github.com/variadico/noti/compare/3.0.0...3.1.0
-[3.0.0]: https://github.com/variadico/noti/compare/v2.7.0...3.0.0
-[2.7.0]: https://github.com/variadico/noti/compare/v2.6.0...v2.7.0
-[2.6.0]: https://github.com/variadico/noti/compare/v2.5.0...v2.6.0
-[2.5.0]: https://github.com/variadico/noti/compare/v2.4.0...v2.5.0
-[2.4.0]: https://github.com/variadico/noti/compare/v2.3.0...v2.4.0
-[2.3.0]: https://github.com/variadico/noti/compare/v2.2.2...v2.3.0
-[2.2.2]: https://github.com/variadico/noti/compare/v2.2.1...v2.2.2
-[2.2.1]: https://github.com/variadico/noti/compare/v2.2.0...v2.2.1
-[2.2.0]: https://github.com/variadico/noti/compare/v2.1.1...v2.2.0
-[2.1.1]: https://github.com/variadico/noti/compare/v2.1.0...v2.1.1
-[2.1.0]: https://github.com/variadico/noti/compare/v2.0.0...v2.1.0
-[2.0.0]: https://github.com/variadico/noti/compare/v1.3.0...v2.0.0
+[Unreleased]: https://codeberg.org/roble/noti/compare/3.8.0...main
+[3.8.0]: https://codeberg.org/roble/noti/compare/3.7.0...3.8.0
+[3.7.0]: https://codeberg.org/roble/noti/compare/3.6.0...3.7.0
+[3.6.0]: https://codeberg.org/roble/noti/compare/3.5.0...3.6.0
+[3.5.0]: https://codeberg.org/roble/noti/compare/3.4.0...3.5.0
+[3.4.0]: https://codeberg.org/roble/noti/compare/3.3.0...3.4.0
+[3.3.0]: https://codeberg.org/roble/noti/compare/3.2.0...3.3.0
+[3.2.0]: https://codeberg.org/roble/noti/compare/3.1.0...3.2.0
+[3.1.0]: https://codeberg.org/roble/noti/compare/3.0.0...3.1.0
+[3.0.0]: https://codeberg.org/roble/noti/compare/v2.7.0...3.0.0
+[2.7.0]: https://codeberg.org/roble/noti/compare/v2.6.0...v2.7.0
+[2.6.0]: https://codeberg.org/roble/noti/compare/v2.5.0...v2.6.0
+[2.5.0]: https://codeberg.org/roble/noti/compare/v2.4.0...v2.5.0
+[2.4.0]: https://codeberg.org/roble/noti/compare/v2.3.0...v2.4.0
+[2.3.0]: https://codeberg.org/roble/noti/compare/v2.2.2...v2.3.0
+[2.2.2]: https://codeberg.org/roble/noti/compare/v2.2.1...v2.2.2
+[2.2.1]: https://codeberg.org/roble/noti/compare/v2.2.0...v2.2.1
+[2.2.0]: https://codeberg.org/roble/noti/compare/v2.1.1...v2.2.0
+[2.1.1]: https://codeberg.org/roble/noti/compare/v2.1.0...v2.1.1
+[2.1.0]: https://codeberg.org/roble/noti/compare/v2.0.0...v2.1.0
+[2.0.0]: https://codeberg.org/roble/noti/compare/v1.3.0...v2.0.0

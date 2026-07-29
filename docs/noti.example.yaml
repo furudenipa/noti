@@ -1,9 +1,9 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/variadico/noti/refs/heads/main/docs/noti.schema.json
+# yaml-language-server: $schema=https://codeberg.org/roble/noti/raw/branch/main/docs/noti.schema.json
 ---
 # noti configuration
-# See https://github.com/variadico/noti for documentation.
+# See https://codeberg.org/roble/noti for documentation.
 
-$schema: https://raw.githubusercontent.com/variadico/noti/refs/heads/main/docs/noti.schema.json
+$schema: https://codeberg.org/roble/noti/raw/branch/main/docs/noti.schema.json
 
 banner:
   # Path to notification icon image. On macOS, accepts PNG or JPEG. On Linux,

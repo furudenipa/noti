@@ -44,21 +44,13 @@ The `master` branch always contains the latest tagged release.
 
 ```shell
 # Install the latest version on any platform.
-go get -u github.com/variadico/noti/cmd/noti
+go get -u codeberg.org/roble/noti/cmd/noti
 
 # Install the latest version on macOS.
 brew install noti
 ```
 
-If you don't want to build from source or install anything extra, just download the latest binary.
-
-```shell
-# macOS
-curl -L $(curl -s https://api.github.com/repos/variadico/noti/releases/latest | awk '/browser_download_url/ { print $2 }' | grep 'darwin-amd64' | sed 's/"//g') | tar -xz
-
-# Linux
-curl -L $(curl -s https://api.github.com/repos/variadico/noti/releases/latest | awk '/browser_download_url/ { print $2 }' | grep 'linux-amd64' | sed 's/"//g') | tar -xz
-```
+If you don't want to build from source or install anything extra, just download the latest binary from the releases page: https://codeberg.org/roble/noti/releases
 
 ## Options
 
@@ -557,7 +549,7 @@ Next, fill `your_key` in `bark.key` to.
 
 ## Reporting bugs
 
-Report bugs on GitHub at https://github.com/variadico/noti/issues.
+Report bugs on GitHub at https://codeberg.org/roble/noti/issues
 
 [Settings]: https://www.pushbullet.com/#settings
 [Pushover]: https://pushover.net

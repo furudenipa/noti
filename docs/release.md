@@ -7,8 +7,6 @@ just writing this down for myself.
 
 Make sure latest dev is green on CI.
 
-https://github.com/variadico/noti/actions?query=workflow%3ATesting
-
 ## Increment version
 
 * docs/CHANGELOG.md
@@ -29,8 +27,6 @@ git push origin main
 
 Make sure latest main is green on CI.
 
-https://github.com/variadico/noti/actions?query=workflow%3ATesting
-
 ## Double check
 
 Fix anything that might have broken like CI or URLs in docs. Last chance to
@@ -49,7 +45,5 @@ git push origin 1.2.3
 
 * Hopefully, when you pushed, GitHub Actions automatically created a release
   draft and uploaded tarballs
-* Go to https://github.com/variadico/noti/actions?query=workflow%3ARelease and
-  delete `noti.darwinrelease`, it's temporary junk. It's fine.
 * Add CHANGELOG notes to release body
 * Publish release

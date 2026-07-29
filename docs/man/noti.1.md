@@ -73,7 +73,7 @@ when it's done. You can receive messages on your computer or phone.
 : Trigger a Twilio notification. This requires `twilio.authToken`, `twilio.accountSid`, `twilio.numberFrom` and `twilio.numberTo` to be set.
 
 --ntfy
-: Trigger a ntfy notification.  This requires `ntfy.topic` be set.  Optionally, `ntfy.url` can also be set to use a different Ntfy server. For private Ntfy topics, access token authentication can be provided via `ntfy.token`. 
+: Trigger a ntfy notification.  This requires `ntfy.topic` be set.  Optionally, `ntfy.url` can also be set to use a different Ntfy server. For private Ntfy topics, access token authentication can be provided via `ntfy.token`.
 
 -w <pid>, \--pwatch <pid>
 : Monitor a process by PID and trigger a notification when the pid disappears.
@@ -152,7 +152,7 @@ Receive your message from stdin with `-`.
 
 # REPORTING BUGS
 
-Report bugs on GitHub at https://github.com/variadico/noti/issues.
+Report bugs on GitHub at https://codeberg.org/roble/noti/issues
 
 # SEE ALSO
 

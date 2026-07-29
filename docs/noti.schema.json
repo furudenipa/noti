@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/variadico/noti/refs/heads/main/docs/noti.schema.json",
+  "$id": "https://codeberg.org/roble/noti/raw/branch/main/docs/noti.schema.json",
   "title": "noti configuration",
   "description": "Configuration schema for noti, a CLI tool that triggers notifications when a utility finishes.",
   "type": "object",
