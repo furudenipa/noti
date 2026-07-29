@@ -67,6 +67,10 @@ test:
 test-integration: out/noti
 	go test -v -cover ./integration/...
 
+.PHONY: clean
+clean:
+	git clean -x -d -f
+
 .PHONY: release-source
 release-source: /tmp/noti$(tag).tar.gz /tmp/noti$(tag).zip
 
