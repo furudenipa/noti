@@ -2,13 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - YYYY-MM-DD
 
+## [3.9.0] - 2026-07-29
+
+### Added
+
 * Add access token support for ntfy
-* Fix macOS banner notifications on modern macOS (Ventura, Sequoia) by replacing deprecated NSUserNotification CGO implementation with osascript `display notification`
+* Add custom icon support for banner notifications
+* Added REUSE and license headers
+
+### Changed
+
+* Moved to Codeberg
+* Updated Go dependencies
+
+### Removed
+
+* Removed HTTP call to check for latest version of noti
+
+### Fixed
+
+* Fix macOS banner notifications on modern macOS (Ventura, Sequoia) by
+  replacing deprecated NSUserNotification CGO implementation with osascript
+  `display notification`
 
 ## [3.8.0] - 2025-03-06
 
