@@ -33,6 +33,7 @@ out/noti$(tag).%-amd64.tar.gz: out/noti.%.rel
 	tar czvf $@ --transform 's#$<#noti#g' $<
 
 out/noti$(tag).tar.gz:
+	mkdir --parents $(dir $@)
 	tar --sort=name \
 		--mtime="2000-01-01 00:00Z" \
 		--owner=0 --group=0 --numeric-owner \
@@ -42,6 +43,7 @@ out/noti$(tag).tar.gz:
 		--exclude out \
 		-cf $@ .
 out/noti$(tag).zip:
+	mkdir --parents $(dir $@)
 	zip --recurse-paths --symlinks -X $@ . --exclude ".git/*" --exclude "out/*"
 
 docs/man/dist/noti.1: docs/man/noti.1.md
