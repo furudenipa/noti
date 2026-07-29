@@ -5,24 +5,18 @@
 package command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 )
-
-// Draft releases and prereleases are not returned by this endpoint.
-const githubReleasesURL = "https://api.github.com/repos/variadico/noti/releases/latest"
 
 // notification is the interface for all notifications.
 type notification interface {
@@ -92,12 +86,6 @@ func rootMain(cmd *cobra.Command, args []string) error {
 
 	if showVer, _ := cmd.Flags().GetBool("version"); showVer {
 		fmt.Println("noti version", Version)
-		if latest, dl, err := latestRelease(githubReleasesURL); err != nil {
-			vbsPrintln("Failed get latest release:", err)
-		} else if latest != Version {
-			fmt.Println("Latest:", latest)
-			fmt.Println("Download:", dl)
-		}
 		return nil
 	}
 
@@ -174,37 +162,6 @@ func enabledTime(v *viper.Viper, flags *pflag.FlagSet) bool {
 		return true
 	}
 	return false
-}
-
-func latestRelease(u string) (string, string, error) {
-	webClient := &http.Client{Timeout: 30 * time.Second}
-
-	resp, err := webClient.Get(u)
-	if err != nil {
-		return "", "", err
-	}
-	defer resp.Body.Close()
-
-	var r struct {
-		HTMLURL string `json:"html_url"`
-		TagName string `json:"tag_name"`
-	}
-	if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
-		return "", "", err
-	}
-
-	missing := make([]string, 0, 2)
-	if r.HTMLURL == "" {
-		missing = append(missing, "HTML URL")
-	}
-	if r.TagName == "" {
-		missing = append(missing, "tag name")
-	}
-	if len(missing) > 0 {
-		return "", "", fmt.Errorf("latest release: missing %q", strings.Join(missing, ","))
-	}
-
-	return r.TagName, r.HTMLURL, nil
 }
 
 func commandName(args []string) string {
