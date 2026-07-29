@@ -1,6 +1,6 @@
-// SPDX-FileCopyrightText: 2015-2026 Noti Contributors
+// SPDX-FileCopyrightText: 2026 variadico
 //
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0-or-later
 
 package main
 

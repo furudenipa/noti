@@ -3,7 +3,6 @@ version = 1
 [[annotations]]
 path = [
   ".clang-format",
-  "cmd/**",
   "CONTRIBUTING.md",
   "docs/**",
   ".gitattributes",
@@ -16,9 +15,15 @@ path = [
   "Makefile",
   "manifest.scm",
   "README.md",
-  "REUSE.toml",
   "service/**",
   ".woodpecker/**",
 ]
 SPDX-FileCopyrightText = "2015-2026 Noti Contributors"
 SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = [
+  "cmd/noti/main.go",
+]
+SPDX-FileCopyrightText = "2026 variadico"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
