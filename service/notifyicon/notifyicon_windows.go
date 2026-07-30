@@ -1,6 +1,6 @@
-// SPDX-FileCopyrightText: 2015-2026 Noti Contributors
+// SPDX-FileCopyrightText: 2026 variadico
 //
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MPL-2.0
 
 package notifyicon
 
