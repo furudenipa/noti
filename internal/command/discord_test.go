@@ -6,7 +6,6 @@ package command
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -145,7 +144,7 @@ func TestDiscordConfiguredDelivery(t *testing.T) {
 				v.Set("message", "Done!")
 				flags := pflag.NewFlagSet("discord", pflag.ContinueOnError)
 				InitFlags(flags)
-				notis := getNotifications(v, enabledServices(v, flags))
+				notis := getNotifications(v, enabledServices(v, flags), false)
 				want := len(tc.services)
 				if len(notis) != want {
 					t.Fatalf("got %d notifications, want %d", len(notis), want)
@@ -167,21 +166,34 @@ func TestDiscordEmbedCommand(t *testing.T) {
 	if _, err := exec.LookPath("sh"); err != nil {
 		t.Skip("sh is required")
 	}
-	for _, fail := range []bool{false, true} {
-		t.Run(fmt.Sprint(fail), func(t *testing.T) {
+	for _, tc := range []struct {
+		name              string
+		failed, noCommand bool
+	}{
+		{"success", false, false},
+		{"failure", true, false},
+		{"no command", false, true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			fail := tc.failed
 			t.Setenv("NOTI_DEFAULT", "")
 			for _, key := range []string{"NOTI_DISCORD_WEBHOOKURL", "NOTI_DISCORD_USERNAME", "NOTI_DISCORD_AVATARURL"} {
 				t.Setenv(key, "")
 			}
 			var title, description string
+			var color int
 			ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				var payload struct {
-					Embeds []struct{ Title, Description string }
+					Embeds []struct {
+						Title, Description string
+						Color              int
+					}
 				}
 				if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
 					t.Error(err)
 				}
 				if len(payload.Embeds) == 1 {
+					color = payload.Embeds[0].Color
 					title = payload.Embeds[0].Title
 					description = payload.Embeds[0].Description
 				} else {
@@ -200,17 +212,31 @@ func TestDiscordEmbedCommand(t *testing.T) {
 			if fail {
 				args[len(args)-1] = "exit 7"
 			}
+			if tc.noCommand {
+				args = args[:3]
+			}
 			cmd.SetArgs(args)
 			err := cmd.Execute()
 			if (err != nil) != fail {
 				t.Fatalf("unexpected command result: %v", err)
 			}
+			wantColor := 0x2ECC71
+			if fail {
+				wantColor = 0xE74C3C
+			}
+			if color != wantColor {
+				t.Errorf("got color %#x, want %#x", color, wantColor)
+			}
 			want := "Done!"
 			if fail {
 				want = "exit status 7"
 			}
-			if title != "sh" || !strings.HasPrefix(description, want+" (") || !strings.HasSuffix(description, ")") {
-				t.Fatalf("got %q / %q, want sh / %q with execution time", title, description, want)
+			wantTitle := "sh"
+			if tc.noCommand {
+				wantTitle = "noti"
+			}
+			if title != wantTitle || !strings.HasPrefix(description, want+" (") || !strings.HasSuffix(description, ")") {
+				t.Fatalf("got %q / %q, want %q / %q with execution time", title, description, wantTitle, want)
 			}
 			elapsed := strings.TrimSuffix(strings.TrimPrefix(description, want+" ("), ")")
 			if _, err := time.ParseDuration(elapsed); err != nil {

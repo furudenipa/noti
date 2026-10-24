@@ -13,6 +13,7 @@ import (
 
 // EmbedNotification is a Discord embed notification.
 type EmbedNotification struct {
+	Failed     bool
 	Title      string
 	Message    string
 	Username   string
@@ -22,6 +23,7 @@ type EmbedNotification struct {
 }
 
 type embed struct {
+	Color       int    `json:"color"`
 	Title       string `json:"title,omitempty"`
 	Description string `json:"description,omitempty"`
 }
@@ -39,8 +41,12 @@ func (n *EmbedNotification) Send() error {
 	if messageLen > 4096 {
 		return errors.New("discord: embed description exceeds 4096 characters")
 	}
+	color := 0x2ECC71 // Green for success.
+	if n.Failed {
+		color = 0xE74C3C // Red for failure.
+	}
 	return sendWebhook(n.WebhookURL, n.Client, webhookPayload{
-		Embeds:    []embed{{Title: n.Title, Description: n.Message}},
+		Embeds:    []embed{{Title: n.Title, Description: n.Message, Color: color}},
 		Username:  n.Username,
 		AvatarURL: n.AvatarURL,
 	})

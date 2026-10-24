@@ -558,6 +558,8 @@ Use `--discord` for a text notification or `--discord-embed` for an embed with
 the notification title and message as its title and description. To select a
 default, add `discord` or `discord-embed` to `defaults`. Both use the same
 `discord` settings; selecting both sends two notifications.
+Embeds are green when the command succeeds and red when it fails.
+Notifications sent without a command are green.
 
 ### Telegram
 

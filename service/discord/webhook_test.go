@@ -26,7 +26,7 @@ func TestSend(t *testing.T) {
 		{"embed", func(url string, client *http.Client) error {
 			n := EmbedNotification{WebhookURL: url, Client: client, Title: "完了", Message: "@everyone <@123> \"test\"", Username: "noti", AvatarURL: "https://example.com/icon.png"}
 			return n.Send()
-		}, `{"embeds":[{"title":"完了","description":"@everyone <@123> \"test\""}],"username":"noti","avatar_url":"https://example.com/icon.png","allowed_mentions":{"parse":[]}}`},
+		}, `{"embeds":[{"color":3066993,"title":"完了","description":"@everyone <@123> \"test\""}],"username":"noti","avatar_url":"https://example.com/icon.png","allowed_mentions":{"parse":[]}}`},
 	} {
 		t.Run(format.name, func(t *testing.T) {
 			for _, tc := range []struct {

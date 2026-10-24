@@ -219,8 +219,9 @@ func getDiscord(title, message string, v *viper.Viper) notification {
 	}
 }
 
-func getDiscordEmbed(title, message string, v *viper.Viper) notification {
+func getDiscordEmbed(title, message string, v *viper.Viper, failed bool) notification {
 	return &discord.EmbedNotification{
+		Failed:     failed,
 		Title:      title,
 		Message:    message,
 		WebhookURL: v.GetString("discord.webhookURL"),

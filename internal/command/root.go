@@ -142,7 +142,7 @@ func rootMain(cmd *cobra.Command, args []string) error {
 	enabled := enabledServices(v, cmd.Flags())
 	vbsPrintln("Services:", enabled)
 	vbsPrintln("Viper:", v.AllSettings())
-	notis := getNotifications(v, enabled)
+	notis := getNotifications(v, enabled, cmdErr != nil)
 
 	vbsPrintln(len(notis), "notifications queued")
 	for _, n := range notis {

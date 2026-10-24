@@ -447,7 +447,7 @@ func TestGetNotifications(t *testing.T) {
 			v := viper.New()
 			s := map[string]struct{}{name: {}}
 
-			notis := getNotifications(v, s)
+			notis := getNotifications(v, s, false)
 			if len(notis) != 1 {
 				t.Error("Unexpected number of notifications")
 				t.Errorf("have=%d; want=%d", len(notis), 1)

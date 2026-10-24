@@ -426,7 +426,7 @@ func enabledServices(v *viper.Viper, flags *pflag.FlagSet) map[string]struct{} {
 	return filtered
 }
 
-func getNotifications(v *viper.Viper, services map[string]struct{}) []notification {
+func getNotifications(v *viper.Viper, services map[string]struct{}, failed bool) []notification {
 	title := v.GetString("title")
 	message := v.GetString("message")
 
@@ -445,7 +445,7 @@ func getNotifications(v *viper.Viper, services map[string]struct{}) []notificati
 	}
 
 	if _, ok := services["discord-embed"]; ok {
-		notis = append(notis, getDiscordEmbed(title, message, v))
+		notis = append(notis, getDiscordEmbed(title, message, v, failed))
 	}
 
 	if _, ok := services["bearychat"]; ok {
