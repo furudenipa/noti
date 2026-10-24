@@ -21,6 +21,7 @@
           "banner",
           "speech",
           "bearychat",
+          "discord",
           "keybase",
           "pushbullet",
           "pushover",
@@ -299,6 +300,26 @@
           "type": "string",
           "description": "The Twilio phone number, short code, or Messaging Service that sends this message. Must be a Twilio phone number that you own, formatted with a '+' and country code, e.g. +16175551212 (E.164 format).",
           "pattern": "^\\+\\d+$"
+        }
+      }
+    },
+    "discord": {
+      "type": "object",
+      "description": "Discord incoming webhook notification settings.",
+      "additionalProperties": false,
+      "properties": {
+        "webhookURL": {
+          "type": "string",
+          "description": "Discord incoming webhook URL. Create one under channel Settings > Integrations > Webhooks.",
+          "format": "uri"
+        },
+        "username": {
+          "type": "string",
+          "description": "Optional override for the webhook's displayed username."
+        },
+        "avatarURL": {
+          "type": "string",
+          "description": "Optional override for the webhook's avatar URL. Leave empty to use its default avatar."
         }
       }
     },

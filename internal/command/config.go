@@ -39,6 +39,10 @@ var baseDefaults = map[string]interface{}{
 
 	"speechsynthesizer.voice": "Microsoft David Desktop",
 
+	"discord.webhookURL": "",
+	"discord.username":   "",
+	"discord.avatarURL":  "",
+
 	"bearychat.incomingHookURI": "",
 
 	"keybase.conversation":      "",
@@ -114,6 +118,10 @@ var keyEnvBindings = map[string]string{
 	"espeak.voiceName": "NOTI_ESPEAK_VOICENAME",
 
 	"speechsynthesizer.voice": "NOTI_SPEECHSYNTHESIZER_VOICE",
+
+	"discord.webhookURL": "NOTI_DISCORD_WEBHOOKURL",
+	"discord.username":   "NOTI_DISCORD_USERNAME",
+	"discord.avatarURL":  "NOTI_DISCORD_AVATARURL",
 
 	"bearychat.incomingHookURI": "NOTI_BEARYCHAT_INCOMINGHOOKURI",
 
@@ -288,6 +296,7 @@ func enabledFromSlice(defaults []string) map[string]bool {
 	services := map[string]bool{
 		"banner":     false,
 		"bearychat":  false,
+		"discord":    false,
 		"keybase":    false,
 		"pushbullet": false,
 		"pushover":   false,
@@ -320,6 +329,7 @@ func hasServiceFlags(flags *pflag.FlagSet) bool {
 	services := map[string]bool{
 		"banner":     false,
 		"bearychat":  false,
+		"discord":    false,
 		"keybase":    false,
 		"pushbullet": false,
 		"pushover":   false,
@@ -355,6 +365,7 @@ func enabledFromFlags(flags *pflag.FlagSet) map[string]bool {
 	services := map[string]bool{
 		"banner":     false,
 		"bearychat":  false,
+		"discord":    false,
 		"keybase":    false,
 		"pushbullet": false,
 		"pushover":   false,
@@ -424,6 +435,10 @@ func getNotifications(v *viper.Viper, services map[string]struct{}) []notificati
 
 	if _, ok := services["speech"]; ok {
 		notis = append(notis, getSpeech(title, message, v))
+	}
+
+	if _, ok := services["discord"]; ok {
+		notis = append(notis, getDiscord(title, message, v))
 	}
 
 	if _, ok := services["bearychat"]; ok {

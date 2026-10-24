@@ -10,10 +10,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/spf13/viper"
 	"codeberg.org/roble/noti/service/bark"
 	"codeberg.org/roble/noti/service/bearychat"
 	"codeberg.org/roble/noti/service/chanify"
+	"codeberg.org/roble/noti/service/discord"
 	"codeberg.org/roble/noti/service/gchat"
 	"codeberg.org/roble/noti/service/keybase"
 	"codeberg.org/roble/noti/service/mattermost"
@@ -26,6 +26,7 @@ import (
 	"codeberg.org/roble/noti/service/telegram"
 	"codeberg.org/roble/noti/service/twilio"
 	"codeberg.org/roble/noti/service/zulip"
+	"github.com/spf13/viper"
 )
 
 var httpClient = &http.Client{Timeout: 30 * time.Second}
@@ -204,5 +205,22 @@ func getBark(title, message string, v *viper.Viper) notification {
 		Title:     title,
 		Body:      message,
 		Client:    httpClient,
+	}
+}
+
+func getDiscord(title, message string, v *viper.Viper) notification {
+	content := message
+	if title != "" {
+		content = "**" + title + "**"
+		if message != "" {
+			content += "\n" + message
+		}
+	}
+	return &discord.Notification{
+		Content:    content,
+		WebhookURL: v.GetString("discord.webhookURL"),
+		Username:   v.GetString("discord.username"),
+		AvatarURL:  v.GetString("discord.avatarURL"),
+		Client:     httpClient,
 	}
 }

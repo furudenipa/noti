@@ -138,6 +138,25 @@ numberFrom
 : From specifies the Twilio phone number, short code, or Messaging Service that sends this message. This must be a Twilio phone number that you own, formatted with a '+' and country code, e.g. +16175551212 (E.164 format)
 
 
+# DISCORD
+
+webhookURL
+: Discord incoming webhook URL. Create one under channel Settings > Integrations > Webhooks.
+
+username
+: Optional display name override; empty uses the webhook's configured name.
+
+avatarURL
+: Optional avatar URL override; empty uses the webhook's configured avatar.
+
+Enable with `--discord`, `defaults: [discord]`, or `NOTI_DEFAULT=discord`.
+Environment variables: `NOTI_DISCORD_WEBHOOKURL`, `NOTI_DISCORD_USERNAME`,
+and `NOTI_DISCORD_AVATARURL`.
+The title (in bold) and message are sent as content, limited to 2000 characters
+including formatting. Longer notifications return an error. Mentions are disabled.
+Delivery is confirmed using `wait=true`; an existing `thread_id` query parameter
+in the webhook URL is preserved. Requests time out after 30 seconds.
+
 # GCHAT
 
 appurl

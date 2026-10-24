@@ -24,6 +24,7 @@ Noti can send notifications on a number of services.
 | Banner     |   ✔   |   ✔   |    ✔    |
 | Speech     |   ✔   |   ✔   |    ✔    |
 | BearyChat  |   ✔   |   ✔   |    ✔    |
+| Discord    |   ✔   |   ✔   |    ✔    |
 | Keybase    |   ✔   |   ✔   |    ✔    |
 | Mattermost |   ✔   |   ✔   |    ✔    |
 | Pushbullet |   ✔   |   ✔   |    ✔    |
@@ -105,6 +106,9 @@ If you don't want to build from source or install anything extra, just download 
     Trigger a Slack notification.  This requires slack.token and
     slack.channel to be set.
 
+--discord
+    Trigger a Discord webhook notification. Requires `discord.webhookURL`.
+
 -n, --gchat
     Trigger a Google Chat notification.  This requires gchat.appurl to be set.
 
@@ -168,6 +172,9 @@ If you don't want to build from source or install anything extra, just download 
 - `NOTI_PUSHSAFER_KEY`
 - `NOTI_SIMPLEPUSH_KEY`
 - `NOTI_SIMPLEPUSH_EVENT`
+- `NOTI_DISCORD_WEBHOOKURL`
+- `NOTI_DISCORD_USERNAME`
+- `NOTI_DISCORD_AVATARURL`
 - `NOTI_SLACK_TOKEN`
 - `NOTI_SLACK_CHANNEL`
 - `NOTI_SLACK_USERNAME`
@@ -343,6 +350,25 @@ numberFrom
     this message.
     This must be a Twilio phone number that you own,
     formatted with a '+' and country code, e.g. +16175551212 (E.164 format)
+
+DISCORD
+
+webhookURL
+    Discord incoming webhook URL. Create one under channel Settings > Integrations > Webhooks.
+
+username
+    Optional display name override; empty uses the webhook's configured name.
+
+avatarURL
+    Optional avatar URL override; empty uses the webhook's configured avatar.
+
+Enable with `--discord`, `defaults: [discord]`, or `NOTI_DEFAULT=discord`.
+Environment variables: `NOTI_DISCORD_WEBHOOKURL`, `NOTI_DISCORD_USERNAME`,
+and `NOTI_DISCORD_AVATARURL`.
+The title (in bold) and message are sent as content, limited to 2000 characters
+including formatting. Longer notifications return an error. Mentions are disabled.
+Delivery is confirmed using `wait=true`; an existing `thread_id` query parameter
+in the webhook URL is preserved. Requests time out after 30 seconds.
 
 GCHAT
 
@@ -523,6 +549,28 @@ Development] page. Create a token. This is what you'll set `slack.token` to.
 The variable `slack.channel` can be set to a channel like `#general` or
 `#random`. You can also set it to someone's username, like `@jaime` or
 `@variadico`.
+
+### Discord
+
+Create an incoming webhook under your Discord channel's Settings > Integrations >
+Webhooks, then configure `.noti.yaml`:
+
+```yaml
+defaults: [discord]
+discord:
+  webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
+```
+
+```sh
+noti --discord -t "Build" -m "Done!"
+noti --discord make build
+# Alternatively, configure the URL via the environment:
+export NOTI_DISCORD_WEBHOOKURL="https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
+noti --discord -t "Build" -m "Done!"
+```
+
+See the [Discord webhook API](https://docs.discord.com/developers/resources/webhook#execute-webhook)
+for the request format and limits.
 
 ### Telegram
 

@@ -175,3 +175,11 @@ mattermost:
   # Mattermost post type. Leave empty for standard messages. Can be used to
   # set a custom post type (e.g., for plugin integrations).
   type: ""
+
+# Discord incoming webhook notifications. Enable with --discord or defaults: [discord].
+discord:
+  # Create a webhook under channel Settings > Integrations > Webhooks.
+  webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
+  # Optional overrides; leave empty to use the webhook's configured name/avatar.
+  username: ""
+  avatarURL: ""

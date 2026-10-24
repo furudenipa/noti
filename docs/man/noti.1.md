@@ -59,6 +59,9 @@ when it's done. You can receive messages on your computer or phone.
 -l, \--simplepush
 : Trigger a Simplepush notification. This requires `simplepush.key` to be set.
 
+--discord
+: Trigger a Discord webhook notification. Requires `discord.webhookURL`.
+
 -n,\--gchat
 : Trigger a Google Chat notification. This requires `gchat.appurl` to be set.
 
@@ -114,6 +117,9 @@ when it's done. You can receive messages on your computer or phone.
 * `NOTI_PUSHSAFER_KEY`
 * `NOTI_SIMPLEPUSH_KEY`
 * `NOTI_SIMPLEPUSH_EVENT`
+* `NOTI_DISCORD_WEBHOOKURL`
+* `NOTI_DISCORD_USERNAME`
+* `NOTI_DISCORD_AVATARURL`
 * `NOTI_SLACK_TOKEN`
 * `NOTI_SLACK_CHANNEL`
 * `NOTI_SLACK_USERNAME`
