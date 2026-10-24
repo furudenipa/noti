@@ -176,10 +176,11 @@ mattermost:
   # set a custom post type (e.g., for plugin integrations).
   type: ""
 
-# Discord incoming webhook notifications. Enable with --discord or defaults: [discord].
 discord:
-  # Create a webhook under channel Settings > Integrations > Webhooks.
+  # Discord incoming webhook URL. Used by both discord and discord-embed.
+  # Create one under channel Settings > Integrations > Webhooks.
   webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
-  # Optional overrides; leave empty to use the webhook's configured name/avatar.
+  # Noti bot username. If empty, the webhook's configured name is used.
   username: ""
+  # Noti bot avatar URL. If empty, the webhook's configured avatar is used.
   avatarURL: ""

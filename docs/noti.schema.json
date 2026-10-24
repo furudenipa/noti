@@ -22,6 +22,7 @@
           "speech",
           "bearychat",
           "discord",
+          "discord-embed",
           "keybase",
           "pushbullet",
           "pushover",
@@ -305,7 +306,7 @@
     },
     "discord": {
       "type": "object",
-      "description": "Discord incoming webhook notification settings.",
+      "description": "Shared settings for Discord message and embed webhook notifications.",
       "additionalProperties": false,
       "properties": {
         "webhookURL": {

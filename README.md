@@ -13,26 +13,27 @@ when it's done. You can receive messages on your computer or phone.
 
 Noti can send notifications on a number of services.
 
-| Service    | macOS | Linux | Windows |
-| ---------- |:-----:|:-----:|:-------:|
-| Banner     | ✔     | ✔     | ✔       |
-| Speech     | ✔     | ✔     | ✔       |
-| BearyChat  | ✔     | ✔     | ✔       |
-| Discord    | ✔     | ✔     | ✔       |
-| Keybase    | ✔     | ✔     | ✔       |
-| Mattermost | ✔     | ✔     | ✔       |
-| Pushbullet | ✔     | ✔     | ✔       |
-| Pushover   | ✔     | ✔     | ✔       |
-| Pushsafer  | ✔     | ✔     | ✔       |
-| Simplepush | ✔     | ✔     | ✔       |
-| Slack      | ✔     | ✔     | ✔       |
-| Telegram   | ✔     | ✔     | ✔       |
-| Zulip      | ✔     | ✔     | ✔       |
-| Twilio     | ✔     | ✔     | ✔       |
-| GChat      | ✔     | ✔     | ✔       |
-| Chanify    | ✔     | ✔     | ✔       |
-| Bark       | ✔     | ✔     | ✔       |
-| ntfy       | ✔     | ✔     | ✔       |
+| Service       | macOS | Linux | Windows |
+| ------------- |:-----:|:-----:|:-------:|
+| Banner        | ✔     | ✔     | ✔       |
+| Speech        | ✔     | ✔     | ✔       |
+| BearyChat     | ✔     | ✔     | ✔       |
+| Discord       | ✔     | ✔     | ✔       |
+| Discord Embed | ✔     | ✔     | ✔       |
+| Keybase       | ✔     | ✔     | ✔       |
+| Mattermost    | ✔     | ✔     | ✔       |
+| Pushbullet    | ✔     | ✔     | ✔       |
+| Pushover      | ✔     | ✔     | ✔       |
+| Pushsafer     | ✔     | ✔     | ✔       |
+| Simplepush    | ✔     | ✔     | ✔       |
+| Slack         | ✔     | ✔     | ✔       |
+| Telegram      | ✔     | ✔     | ✔       |
+| Zulip         | ✔     | ✔     | ✔       |
+| Twilio        | ✔     | ✔     | ✔       |
+| GChat         | ✔     | ✔     | ✔       |
+| Chanify       | ✔     | ✔     | ✔       |
+| Bark          | ✔     | ✔     | ✔       |
+| ntfy          | ✔     | ✔     | ✔       |
 
 Check the [screenshots] directory to see what the notifications look like on different platforms.
 

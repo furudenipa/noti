@@ -141,21 +141,13 @@ numberFrom
 # DISCORD
 
 webhookURL
-: Discord incoming webhook URL. Create one under channel Settings > Integrations > Webhooks.
+: Discord incoming webhook URL. Used by both discord and discord-embed.
 
 username
-: Optional display name override; empty uses the webhook's configured name.
+: Noti bot username. If empty, the webhook's configured name is used.
 
 avatarURL
-: Optional avatar URL override; empty uses the webhook's configured avatar.
-
-Enable with `--discord`, `defaults: [discord]`, or `NOTI_DEFAULT=discord`.
-Environment variables: `NOTI_DISCORD_WEBHOOKURL`, `NOTI_DISCORD_USERNAME`,
-and `NOTI_DISCORD_AVATARURL`.
-The title (in bold) and message are sent as content, limited to 2000 characters
-including formatting. Longer notifications return an error. Mentions are disabled.
-Delivery is confirmed using `wait=true`; an existing `thread_id` query parameter
-in the webhook URL is preserved. Requests time out after 30 seconds.
+: Noti bot avatar URL. If empty, the webhook's configured avatar is used.
 
 # GCHAT
 
@@ -182,6 +174,8 @@ template
       voice: Microsoft David Desktop
     bearychat:
       incomingHookURI: 1234567890abcdefg
+    discord:
+      webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
     keybase:
       conversation: yourteam
       channel: general

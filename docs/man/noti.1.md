@@ -60,7 +60,11 @@ when it's done. You can receive messages on your computer or phone.
 : Trigger a Simplepush notification. This requires `simplepush.key` to be set.
 
 --discord
-: Trigger a Discord webhook notification. Requires `discord.webhookURL`.
+: Trigger a Discord notification. This requires `discord.webhookURL` to be set.
+
+--discord-embed
+: Trigger a Discord embed notification. This requires `discord.webhookURL` to
+  be set.
 
 -n,\--gchat
 : Trigger a Google Chat notification. This requires `gchat.appurl` to be set.

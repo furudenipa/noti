@@ -19,25 +19,26 @@ when it's done. You can receive messages on your computer or phone.
 
 Noti can send notifications on a number of services.
 
-| Service    | macOS | Linux | Windows |
-| ---------- | :---: | :---: | :-----: |
-| Banner     |   ✔   |   ✔   |    ✔    |
-| Speech     |   ✔   |   ✔   |    ✔    |
-| BearyChat  |   ✔   |   ✔   |    ✔    |
-| Discord    |   ✔   |   ✔   |    ✔    |
-| Keybase    |   ✔   |   ✔   |    ✔    |
-| Mattermost |   ✔   |   ✔   |    ✔    |
-| Pushbullet |   ✔   |   ✔   |    ✔    |
-| Pushover   |   ✔   |   ✔   |    ✔    |
-| Pushsafer  |   ✔   |   ✔   |    ✔    |
-| Simplepush |   ✔   |   ✔   |    ✔    |
-| Slack      |   ✔   |   ✔   |    ✔    |
-| Telegram   |   ✔   |   ✔   |    ✔    |
-| Zulip      |   ✔   |   ✔   |    ✔    |
-| Twilio     |   ✔   |   ✔   |    ✔    |
-| GChat      |   ✔   |   ✔   |    ✔    |
-| ntfy       |   ✔   |   ✔   |    ✔    |
-| Bark       |   ✔   |   ✔   |    ✔    |
+| Service       | macOS | Linux | Windows |
+| ------------- | :---: | :---: | :-----: |
+| Banner        |   ✔   |   ✔   |    ✔    |
+| Speech        |   ✔   |   ✔   |    ✔    |
+| BearyChat     |   ✔   |   ✔   |    ✔    |
+| Discord       |   ✔   |   ✔   |    ✔    |
+| Discord Embed |   ✔   |   ✔   |    ✔    |
+| Keybase       |   ✔   |   ✔   |    ✔    |
+| Mattermost    |   ✔   |   ✔   |    ✔    |
+| Pushbullet    |   ✔   |   ✔   |    ✔    |
+| Pushover      |   ✔   |   ✔   |    ✔    |
+| Pushsafer     |   ✔   |   ✔   |    ✔    |
+| Simplepush    |   ✔   |   ✔   |    ✔    |
+| Slack         |   ✔   |   ✔   |    ✔    |
+| Telegram      |   ✔   |   ✔   |    ✔    |
+| Zulip         |   ✔   |   ✔   |    ✔    |
+| Twilio        |   ✔   |   ✔   |    ✔    |
+| GChat         |   ✔   |   ✔   |    ✔    |
+| ntfy          |   ✔   |   ✔   |    ✔    |
+| Bark          |   ✔   |   ✔   |    ✔    |
 
 ## Installation
 
@@ -107,7 +108,11 @@ If you don't want to build from source or install anything extra, just download 
     slack.channel to be set.
 
 --discord
-    Trigger a Discord webhook notification. Requires `discord.webhookURL`.
+    Trigger a Discord notification.  This requires discord.webhookURL to be set.
+
+--discord-embed
+    Trigger a Discord embed notification.  This requires discord.webhookURL
+    to be set.
 
 -n, --gchat
     Trigger a Google Chat notification.  This requires gchat.appurl to be set.
@@ -354,21 +359,13 @@ numberFrom
 DISCORD
 
 webhookURL
-    Discord incoming webhook URL. Create one under channel Settings > Integrations > Webhooks.
+    Discord incoming webhook URL. Used by both discord and discord-embed.
 
 username
-    Optional display name override; empty uses the webhook's configured name.
+    Noti bot username. If empty, the webhook's configured name is used.
 
 avatarURL
-    Optional avatar URL override; empty uses the webhook's configured avatar.
-
-Enable with `--discord`, `defaults: [discord]`, or `NOTI_DEFAULT=discord`.
-Environment variables: `NOTI_DISCORD_WEBHOOKURL`, `NOTI_DISCORD_USERNAME`,
-and `NOTI_DISCORD_AVATARURL`.
-The title (in bold) and message are sent as content, limited to 2000 characters
-including formatting. Longer notifications return an error. Mentions are disabled.
-Delivery is confirmed using `wait=true`; an existing `thread_id` query parameter
-in the webhook URL is preserved. Requests time out after 30 seconds.
+    Noti bot avatar URL. If empty, the webhook's configured avatar is used.
 
 GCHAT
 
@@ -457,6 +454,8 @@ speechsynthesizer:
   voice: Microsoft David Desktop
 bearychat:
   incomingHookURI: 1234567890abcdefg
+discord:
+  webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
 keybase:
   conversation: yourteam
   channel: general
@@ -552,25 +551,13 @@ The variable `slack.channel` can be set to a channel like `#general` or
 
 ### Discord
 
-Create an incoming webhook under your Discord channel's Settings > Integrations >
-Webhooks, then configure `.noti.yaml`:
+Open your Discord channel's Settings, then go to Integrations > Webhooks and
+create a webhook. Copy its URL and set `discord.webhookURL` to that value.
 
-```yaml
-defaults: [discord]
-discord:
-  webhookURL: "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
-```
-
-```sh
-noti --discord -t "Build" -m "Done!"
-noti --discord make build
-# Alternatively, configure the URL via the environment:
-export NOTI_DISCORD_WEBHOOKURL="https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
-noti --discord -t "Build" -m "Done!"
-```
-
-See the [Discord webhook API](https://docs.discord.com/developers/resources/webhook#execute-webhook)
-for the request format and limits.
+Use `--discord` for a text notification or `--discord-embed` for an embed with
+the notification title and message as its title and description. To select a
+default, add `discord` or `discord-embed` to `defaults`. Both use the same
+`discord` settings; selecting both sends two notifications.
 
 ### Telegram
 
