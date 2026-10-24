@@ -294,24 +294,25 @@ func enabledFromSlice(defaults []string) map[string]bool {
 	// and config file values.
 
 	services := map[string]bool{
-		"banner":     false,
-		"bearychat":  false,
-		"discord":    false,
-		"keybase":    false,
-		"pushbullet": false,
-		"pushover":   false,
-		"pushsafer":  false,
-		"simplepush": false,
-		"slack":      false,
-		"gchat":      false,
-		"speech":     false,
-		"mattermost": false,
-		"telegram":   false,
-		"zulip":      false,
-		"twilio":     false,
-		"chanify":    false,
-		"ntfy":       false,
-		"bark":       false,
+		"banner":        false,
+		"bearychat":     false,
+		"discord":       false,
+		"discord-embed": false,
+		"keybase":       false,
+		"pushbullet":    false,
+		"pushover":      false,
+		"pushsafer":     false,
+		"simplepush":    false,
+		"slack":         false,
+		"gchat":         false,
+		"speech":        false,
+		"mattermost":    false,
+		"telegram":      false,
+		"zulip":         false,
+		"twilio":        false,
+		"chanify":       false,
+		"ntfy":          false,
+		"bark":          false,
 	}
 
 	for _, name := range defaults {
@@ -327,24 +328,25 @@ func enabledFromSlice(defaults []string) map[string]bool {
 
 func hasServiceFlags(flags *pflag.FlagSet) bool {
 	services := map[string]bool{
-		"banner":     false,
-		"bearychat":  false,
-		"discord":    false,
-		"keybase":    false,
-		"pushbullet": false,
-		"pushover":   false,
-		"pushsafer":  false,
-		"simplepush": false,
-		"slack":      false,
-		"gchat":      false,
-		"speech":     false,
-		"mattermost": false,
-		"telegram":   false,
-		"zulip":      false,
-		"twilio":     false,
-		"chanify":    false,
-		"ntfy":       false,
-		"bark":       false,
+		"banner":        false,
+		"bearychat":     false,
+		"discord":       false,
+		"discord-embed": false,
+		"keybase":       false,
+		"pushbullet":    false,
+		"pushover":      false,
+		"pushsafer":     false,
+		"simplepush":    false,
+		"slack":         false,
+		"gchat":         false,
+		"speech":        false,
+		"mattermost":    false,
+		"telegram":      false,
+		"zulip":         false,
+		"twilio":        false,
+		"chanify":       false,
+		"ntfy":          false,
+		"bark":          false,
 	}
 
 	flags.Visit(func(f *pflag.Flag) {
@@ -363,24 +365,25 @@ func hasServiceFlags(flags *pflag.FlagSet) bool {
 
 func enabledFromFlags(flags *pflag.FlagSet) map[string]bool {
 	services := map[string]bool{
-		"banner":     false,
-		"bearychat":  false,
-		"discord":    false,
-		"keybase":    false,
-		"pushbullet": false,
-		"pushover":   false,
-		"pushsafer":  false,
-		"simplepush": false,
-		"slack":      false,
-		"gchat":      false,
-		"speech":     false,
-		"mattermost": false,
-		"telegram":   false,
-		"zulip":      false,
-		"twilio":     false,
-		"chanify":    false,
-		"ntfy":       false,
-		"bark":       false,
+		"banner":        false,
+		"bearychat":     false,
+		"discord":       false,
+		"discord-embed": false,
+		"keybase":       false,
+		"pushbullet":    false,
+		"pushover":      false,
+		"pushsafer":     false,
+		"simplepush":    false,
+		"slack":         false,
+		"gchat":         false,
+		"speech":        false,
+		"mattermost":    false,
+		"telegram":      false,
+		"zulip":         false,
+		"twilio":        false,
+		"chanify":       false,
+		"ntfy":          false,
+		"bark":          false,
 	}
 
 	// Visit flags that have been set.
@@ -439,6 +442,10 @@ func getNotifications(v *viper.Viper, services map[string]struct{}) []notificati
 
 	if _, ok := services["discord"]; ok {
 		notis = append(notis, getDiscord(title, message, v))
+	}
+
+	if _, ok := services["discord-embed"]; ok {
+		notis = append(notis, getDiscordEmbed(title, message, v))
 	}
 
 	if _, ok := services["bearychat"]; ok {

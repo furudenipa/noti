@@ -209,15 +209,20 @@ func getBark(title, message string, v *viper.Viper) notification {
 }
 
 func getDiscord(title, message string, v *viper.Viper) notification {
-	content := message
-	if title != "" {
-		content = "**" + title + "**"
-		if message != "" {
-			content += "\n" + message
-		}
-	}
 	return &discord.Notification{
-		Content:    content,
+		Title:      title,
+		Message:    message,
+		WebhookURL: v.GetString("discord.webhookURL"),
+		Username:   v.GetString("discord.username"),
+		AvatarURL:  v.GetString("discord.avatarURL"),
+		Client:     httpClient,
+	}
+}
+
+func getDiscordEmbed(title, message string, v *viper.Viper) notification {
+	return &discord.EmbedNotification{
+		Title:      title,
+		Message:    message,
 		WebhookURL: v.GetString("discord.webhookURL"),
 		Username:   v.GetString("discord.username"),
 		AvatarURL:  v.GetString("discord.avatarURL"),
