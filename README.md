@@ -1,5 +1,7 @@
 # noti
 
+This is a fork of [roble/noti](https://codeberg.org/roble/noti). It adds Discord webhook notifications (plain text and embeds).
+
 [![status-badge](https://ci.codeberg.org/api/badges/16710/status.svg)](https://ci.codeberg.org/repos/16710)
 
 Monitor a process and trigger a notification.
